@@ -10,4 +10,27 @@
 
 @interface ViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *result;
+
+- (IBAction)numberZero:(id)sender;
+- (IBAction)numberOne:(id)sender;
+- (IBAction)numberTwo:(id)sender;
+- (IBAction)numberThree:(id)sender;
+- (IBAction)numberFour:(id)sender;
+- (IBAction)numberFive:(id)sender;
+- (IBAction)numberSix:(id)sender;
+- (IBAction)numberSeven:(id)sender;
+- (IBAction)numberEight:(id)sender;
+- (IBAction)numberNine:(id)sender;
+- (IBAction)equalButton:(id)sender;
+- (IBAction)addButton:(id)sender;
+- (IBAction)subButton:(id)sender;
+- (IBAction)mulButton:(id)sender;
+- (IBAction)divButton:(id)sender;
+- (IBAction)clearButton:(id)sender;
+
+@property(nonatomic, assign)NSInteger countNumber;
+@property(nonatomic, assign)NSInteger buttonNumber;
+@property(nonatomic, assign)NSInteger operationFlag;
+@property(nonatomic, assign)NSInteger total;
 @end
