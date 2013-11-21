@@ -31,79 +31,101 @@
 }
 - (IBAction)numberZero:(id)sender {
     self.buttonNumber = 0;
-    [self resultOutput];
+    [self placeNumber];
 }
 
 - (IBAction)numberOne:(id)sender {
     self.buttonNumber = 1;
-    [self resultOutput];
+    [self placeNumber];
 }
 
 - (IBAction)numberTwo:(id)sender {
     self.buttonNumber = 2;
-    [self resultOutput];
+    [self placeNumber];
 }
 
 - (IBAction)numberThree:(id)sender {
     self.buttonNumber = 3;
-    [self resultOutput];
+    [self placeNumber];
 }
 
 - (IBAction)numberFour:(id)sender {
     self.buttonNumber = 4;
-    [self resultOutput];
+    [self placeNumber];
 }
 
 - (IBAction)numberFive:(id)sender {
     self.buttonNumber = 5;
-    [self resultOutput];
+    [self placeNumber];
 }
 
 - (IBAction)numberSix:(id)sender {
     self.buttonNumber = 6;
-    [self resultOutput];
+    [self placeNumber];
 }
 
 - (IBAction)numberSeven:(id)sender {
     self.buttonNumber = 7;
-    [self resultOutput];
+    [self placeNumber];
 }
 
 - (IBAction)numberEight:(id)sender {
     self.buttonNumber = 8;
-    [self resultOutput];
+    [self placeNumber];
 }
 
 - (IBAction)numberNine:(id)sender {
     self.buttonNumber = 9;
-    [self resultOutput];
+    [self placeNumber];
 }
 
 - (IBAction)addButton:(id)sender {
-    self.total += self.countNumber;
-    self.countNumber = 0;
+    //self.total += self.countNumber;
+    //self.countNumber = self.total;
+    //[self resultOutput];
+    //self.countNumber = 0;
     self.operationFlag = 1;
-}
+    [self calc];}
 
 - (IBAction)subButton:(id)sender {
-    self.total -= self.countNumber;
-    self.countNumber = 0;
+    //self.total -= self.countNumber;
+    //self.countNumber = self.total;
+    //[self resultOutput];
+    //self.countNumber = 0;
     self.operationFlag = 2;
-}
+    [self calc];}
 
 - (IBAction)mulButton:(id)sender {
-    self.total *= self.countNumber;
-    self.countNumber = 0;
+    //self.total *= self.countNumber;
+    //self.countNumber = self.total;
+    //[self resultOutput];
+    //self.countNumber = 0;
     self.operationFlag = 3;
-}
+    [self calc];}
 
 - (IBAction)divButton:(id)sender {
-    self.total /= self.countNumber;
-    self.countNumber = 0;
+    //self.total /= self.countNumber;
+    //self.countNumber = self.total;
+    //[self resultOutput];
+    //self.countNumber = 0;
     self.operationFlag = 4;
+    [self calc];}
+
+-(IBAction)equalButton:(id)sender {
+    if(self.operationFlag == 0){
+        //self.countNumber = self.total;
+        [self resultOutput];
+    }
+    else{
+        [self calc];
+    }
+    self.countNumber = self.total;
+    [self resultOutput];
+    self.operationFlag = 0;
+    self.countNumber = 0;
 }
 
-- (IBAction)equalButton:(id)sender {
+-(void)calc{
     switch(operationFlag){
         case 1:self.total += self.countNumber;
             break;
@@ -121,10 +143,9 @@
     }
     self.countNumber = self.total;
     [self resultOutput];
-    self.operationFlag = 0;
     self.countNumber = 0;
-    
 }
+
 - (IBAction)clearButton:(id)sender {
     self.countNumber = 0;
     self.buttonNumber = 0;
@@ -133,8 +154,13 @@
     [self resultOutput];
 }
 
--(void)resultOutput{
+-(void)placeNumber{
     self.countNumber = (self.countNumber*10)+buttonNumber;
+    [self resultOutput];
+}
+
+-(void)resultOutput{
+    /*self.countNumber = (self.countNumber*10)+buttonNumber;*/
     NSString *print=[[NSString alloc] initWithFormat:@"%d", self.countNumber];
     self.result.text = print;}
 @end
