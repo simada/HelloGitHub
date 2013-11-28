@@ -16,7 +16,9 @@
 @synthesize countNumber;
 @synthesize buttonNumber;
 @synthesize operationFlag;
+@synthesize calcFlag;
 @synthesize total;
+
 
 - (void)viewDidLoad
 {
@@ -80,40 +82,23 @@
 }
 
 - (IBAction)addButton:(id)sender {
-    //self.total += self.countNumber;
-    //self.countNumber = self.total;
-    //[self resultOutput];
-    //self.countNumber = 0;
-    self.operationFlag = 1;
-    [self calc];}
+    [self calc];
+    self.operationFlag = 1;}
 
 - (IBAction)subButton:(id)sender {
-    //self.total -= self.countNumber;
-    //self.countNumber = self.total;
-    //[self resultOutput];
-    //self.countNumber = 0;
-    self.operationFlag = 2;
-    [self calc];}
+    [self calc];
+    self.operationFlag = 2;}
 
 - (IBAction)mulButton:(id)sender {
-    //self.total *= self.countNumber;
-    //self.countNumber = self.total;
-    //[self resultOutput];
-    //self.countNumber = 0;
-    self.operationFlag = 3;
-    [self calc];}
+    [self calc];
+    self.operationFlag = 3;}
 
 - (IBAction)divButton:(id)sender {
-    //self.total /= self.countNumber;
-    //self.countNumber = self.total;
-    //[self resultOutput];
-    //self.countNumber = 0;
-    self.operationFlag = 4;
-    [self calc];}
+    [self calc];
+    self.operationFlag = 4;}
 
 -(IBAction)equalButton:(id)sender {
     if(self.operationFlag == 0){
-        //self.countNumber = self.total;
         [self resultOutput];
     }
     else{
@@ -126,22 +111,39 @@
 }
 
 -(void)calc{
-    switch(operationFlag){
-        case 1:self.total += self.countNumber;
-            break;
-            
-        case 2:self.total -= self.countNumber;
-            break;
-            
-        case 3:self.total *= self.countNumber ;
-            break;
-            
-        case 4:self.total /= self.countNumber;
-            break;
-            
-        default:break;
+    if(calcFlag==0){
+        self.total = self.countNumber;
+        calcFlag=1;
     }
-    self.countNumber = self.total;
+    else if(calcFlag==1){
+        switch(operationFlag){
+            case 1:self.total += self.countNumber;
+                break;
+                
+            case 2:self.total -= self.countNumber;
+                break;
+                
+            case 3:if(countNumber==0){
+                    self.total = self.total;
+                }
+                if(countNumber!=0){
+                    self.total *= self.countNumber;
+                }
+                break;
+                
+            case 4:if(countNumber==0){
+                self.total = self.total;
+            }
+                if(countNumber!=0){
+                    self.total /= self.countNumber;
+            }
+            break;
+                
+            default:break;
+        }
+        self.countNumber = self.total;
+    }
+
     [self resultOutput];
     self.countNumber = 0;
 }
@@ -150,6 +152,7 @@
     self.countNumber = 0;
     self.buttonNumber = 0;
     self.operationFlag = 0;
+    self.calcFlag = 0;
     self.total = 0;
     [self resultOutput];
 }
@@ -160,7 +163,16 @@
 }
 
 -(void)resultOutput{
-    /*self.countNumber = (self.countNumber*10)+buttonNumber;*/
-    NSString *print=[[NSString alloc] initWithFormat:@"%d", self.countNumber];
-    self.result.text = print;}
+    if(self.countNumber <= 999999){
+        if(-999999 <=self.countNumber){
+            NSString *print=[[NSString alloc] initWithFormat:@"%g", self.countNumber];
+            self.result.text = print;
+        }
+    }
+    else{
+    NSString *print=[[NSString alloc] initWithFormat:@"error"];
+    self.result.text = print;
+    }
+}
+
 @end

@@ -29,8 +29,9 @@
 - (IBAction)divButton:(id)sender;
 - (IBAction)clearButton:(id)sender;
 
-@property(nonatomic, assign)NSInteger countNumber;
+@property(nonatomic, assign)double countNumber;
 @property(nonatomic, assign)NSInteger buttonNumber;
 @property(nonatomic, assign)NSInteger operationFlag;
-@property(nonatomic, assign)NSInteger total;
+@property(nonatomic, assign)NSInteger calcFlag;
+@property(nonatomic, assign)double total;
 @end
