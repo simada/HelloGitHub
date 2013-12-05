@@ -17,6 +17,7 @@
 @synthesize buttonNumber;
 @synthesize operationFlag;
 @synthesize calcFlag;
+@synthesize calcZeroFlag;
 @synthesize total;
 
 
@@ -123,17 +124,15 @@
             case 2:self.total -= self.countNumber;
                 break;
                 
-            case 3:if(countNumber==0){
-                    self.total = self.total;
+            case 3:if(calcFlag!=0){
+                    if(calcZeroFlag!=1){
+                        self.total *= self.countNumber;
                 }
-                if(countNumber!=0){
-                    self.total *= self.countNumber;
-                }
+                    else{}
+            }
                 break;
                 
-            case 4:if(countNumber==0){
-                self.total = self.total;
-            }
+            case 4:if(countNumber==0){}
                 if(countNumber!=0){
                     self.total /= self.countNumber;
             }
@@ -143,7 +142,7 @@
         }
         self.countNumber = self.total;
     }
-
+    calcZeroFlag=1;
     [self resultOutput];
     self.countNumber = 0;
 }
@@ -159,6 +158,7 @@
 
 -(void)placeNumber{
     self.countNumber = (self.countNumber*10)+buttonNumber;
+    calcZeroFlag=0;
     [self resultOutput];
 }
 

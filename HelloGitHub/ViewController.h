@@ -33,5 +33,6 @@
 @property(nonatomic, assign)NSInteger buttonNumber;
 @property(nonatomic, assign)NSInteger operationFlag;
 @property(nonatomic, assign)NSInteger calcFlag;
+@property(nonatomic, assign)NSInteger calcZeroFlag;
 @property(nonatomic, assign)double total;
 @end
